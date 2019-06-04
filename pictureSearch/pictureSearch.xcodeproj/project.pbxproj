@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		37ABBB8622A6D5E7001F9C37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBB8522A6D5E7001F9C37 /* AppDelegate.swift */; };
-		37ABBB8822A6D5E7001F9C37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBB8722A6D5E7001F9C37 /* ViewController.swift */; };
 		37ABBB8B22A6D5E7001F9C37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ABBB8922A6D5E7001F9C37 /* Main.storyboard */; };
 		37ABBB8D22A6D5E8001F9C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37ABBB8C22A6D5E8001F9C37 /* Assets.xcassets */; };
 		37ABBB9022A6D5E8001F9C37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ABBB8E22A6D5E8001F9C37 /* LaunchScreen.storyboard */; };
+		37ABBB9822A6DCB7001F9C37 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBB9722A6DCB7001F9C37 /* SearchViewController.swift */; };
+		37ABBBA122A6E481001F9C37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBA022A6E481001F9C37 /* ViewController.swift */; };
+		37ABBBA322A6EBD5001F9C37 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBA222A6EBD5001F9C37 /* ApiController.swift */; };
+		37ABBBA522A71935001F9C37 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBA422A71935001F9C37 /* SearchResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		37ABBB8222A6D5E7001F9C37 /* pictureSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pictureSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37ABBB8522A6D5E7001F9C37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		37ABBB8722A6D5E7001F9C37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		37ABBB8A22A6D5E7001F9C37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37ABBB8C22A6D5E8001F9C37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37ABBB8F22A6D5E8001F9C37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37ABBB9122A6D5E8001F9C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37ABBB9722A6DCB7001F9C37 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		37ABBBA022A6E481001F9C37 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		37ABBBA222A6EBD5001F9C37 /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
+		37ABBBA422A71935001F9C37 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +61,56 @@
 			isa = PBXGroup;
 			children = (
 				37ABBB8522A6D5E7001F9C37 /* AppDelegate.swift */,
-				37ABBB8722A6D5E7001F9C37 /* ViewController.swift */,
+				37ABBB9A22A6E2F1001F9C37 /* ViewControllers */,
+				37ABBB9922A6E2A0001F9C37 /* Resources */,
+				37ABBBA622A71E1A001F9C37 /* ModelControllers */,
+			);
+			path = pictureSearch;
+			sourceTree = "<group>";
+		};
+		37ABBB9922A6E2A0001F9C37 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				37ABBB8922A6D5E7001F9C37 /* Main.storyboard */,
 				37ABBB8C22A6D5E8001F9C37 /* Assets.xcassets */,
 				37ABBB8E22A6D5E8001F9C37 /* LaunchScreen.storyboard */,
 				37ABBB9122A6D5E8001F9C37 /* Info.plist */,
 			);
-			path = pictureSearch;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		37ABBB9A22A6E2F1001F9C37 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				37ABBB9F22A6E478001F9C37 /* Initial */,
+				37ABBB9C22A6E326001F9C37 /* Search */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		37ABBB9C22A6E326001F9C37 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				37ABBB9722A6DCB7001F9C37 /* SearchViewController.swift */,
+				37ABBBA422A71935001F9C37 /* SearchResultsViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		37ABBB9F22A6E478001F9C37 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				37ABBBA022A6E481001F9C37 /* ViewController.swift */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
+		37ABBBA622A71E1A001F9C37 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				37ABBBA222A6EBD5001F9C37 /* ApiController.swift */,
+			);
+			path = ModelControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37ABBB8822A6D5E7001F9C37 /* ViewController.swift in Sources */,
+				37ABBB9822A6DCB7001F9C37 /* SearchViewController.swift in Sources */,
+				37ABBBA522A71935001F9C37 /* SearchResultsViewController.swift in Sources */,
+				37ABBBA322A6EBD5001F9C37 /* ApiController.swift in Sources */,
+				37ABBBA122A6E481001F9C37 /* ViewController.swift in Sources */,
 				37ABBB8622A6D5E7001F9C37 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,7 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = pictureSearch/Info.plist;
+				INFOPLIST_FILE = pictureSearch/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = pictureSearch/Info.plist;
+				INFOPLIST_FILE = pictureSearch/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
