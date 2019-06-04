@@ -10,6 +10,12 @@ import Foundation
 
 class ApiController {
     
+    static let shared = ApiController()
+    
+    private init() {}
+    
+    private var results = [String: Data]()
+    
     private let scheme = "https"
     private let host = "api.giphy.com"
     private let path = "/v1/gifs/search"
@@ -45,6 +51,36 @@ class ApiController {
         })
         
         task.resume()
+    }
+    
+    func downloaded(from url: URL, completion: ((Data)->())?) {
+        let session = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil
+                else { return }
+            
+            self?.results[url.absoluteString] = data
+            
+            DispatchQueue.main.async() {
+                completion?(data)
+                return
+            }
+        }
+        
+        session.resume()
+    }
+    
+    func downloaded(from link: String, completion: ((Data)->())?) {
+        
+        if let data = results[link] {
+            completion?(data)
+            return
+        }
+        
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, completion: completion)
     }
 }
 

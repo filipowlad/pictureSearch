@@ -12,7 +12,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     private let cellIdentifier = "searchHistoryCell"
     
-    private let apiController = ApiController()
+    private let apiController = ApiController.shared
     
     private var searchController: UISearchController?
     private var searchTableView: UITableView?
@@ -98,11 +98,7 @@ extension SearchViewControllerTable {
         
         view.addSubview(searchTableView)
         
-        let attributes: [NSLayoutConstraint.Attribute] = [.top, .bottom, .leading, .trailing]
-        
-        attributes.forEach { attribute in
-            NSLayoutConstraint(item: searchTableView, attribute: attribute, relatedBy: .equal, toItem: view, attribute: attribute, multiplier: 1, constant: 0).isActive = true
-        }
+        searchTableView.setConstraints(to: view)
     }
 }
 
@@ -121,22 +117,8 @@ extension SearchViewControllerNavigation {
     private func createSearchController() {
         searchController = UISearchController(searchResultsController: searchResultsViewController)
         searchController?.obscuresBackgroundDuringPresentation = false
-//        searchController?.searchResultsUpdater = self
-        
         searchController?.searchBar.barStyle = .black
         searchController?.searchBar.delegate = self
         searchController?.searchBar.update()
-    }
-}
-
-extension UISearchBar {
-    func update() {
-        searchBarStyle = .minimal
-        
-        tintColor = .white
-        barTintColor = .white
-        
-        isTranslucent = false
-        placeholder = "Search"
     }
 }
