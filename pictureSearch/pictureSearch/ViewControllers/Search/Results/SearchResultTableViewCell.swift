@@ -17,6 +17,12 @@ class SearchResultTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        resultImageView?.image = nil
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
