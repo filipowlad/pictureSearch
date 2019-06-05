@@ -29,3 +29,24 @@ extension UIView {
         }
     }
 }
+
+extension Date {
+    func getStringDate() -> String {
+        let calendar = NSCalendar.current
+        let day = calendar.component(.day, from: self)
+        let month = calendar.component(.month, from: self)
+        let year = calendar.component(.year, from: self)
+        
+        return "\(day)/\(month)/\(year)"
+    }
+    
+    func getStringTime() -> String {
+        let calendar = NSCalendar.current
+        let hour = calendar.component(.hour, from: self)
+        let minutes = calendar.component(.minute, from: self)
+        let hourString = hour < 10 ? "0" + String(hour) : String(hour)
+        let minutesString = minutes < 10 ? "0" + String(minutes) : String(minutes)
+        
+        return "\(hourString):\(minutesString)"
+    }
+}

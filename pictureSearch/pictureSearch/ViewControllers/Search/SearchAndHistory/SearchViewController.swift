@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController {
     
     private let cellIdentifier = "searchHistoryCell"
     
@@ -19,7 +19,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     private var searchResultsViewController = SearchResultsViewController()
     
-    private var dataSource: [String] = ["First", "Second", "Third", "First", "Second", "Third", "First", "Second", "Third", "First", "Second", "Third"]
+    private var dataSource = [RealmImage]() {
+        didSet {
+            if oldValue != dataSource {
+                searchTableView?.reloadData()
+            }
+        }
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -31,35 +37,64 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         setupKeyboardNotifications()
         setupNavigationController()
         setupTableView()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchPhrase = searchBar.text {
-            apiController.getImages(by: searchPhrase) { response in
-                self.searchResultsViewController.dataSource = response
-            }
-        }
+        
+        updateTable()
     }
 }
 
+//MARK: - Search delegate
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchPhrase = searchBar.text {
+            apiController.getImages(by: searchPhrase) { [weak self] response in
+                guard let response = response, !response.isEmpty else {
+                    self?.showErrorGettingPicturesAlert(for: searchPhrase)
+                    return
+                }
+                
+                self?.searchResultsViewController.dataSource = response
+                
+                guard let imageCollection = response.first else { return }
+                
+                self?.saveSearchResult(forPhrase: searchPhrase, and: imageCollection)
+            }
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateTable()
+    }
+}
+
+//MARK: - Table dataSource
+
 extension SearchViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SearchHistoryTableViewCell else {
+            return UITableViewCell()
+        }
+        
         let source = dataSource[indexPath.row]
         
-        cell.textLabel?.text = source
+        cell.setup(with: source)
         
         return cell
     }
 }
 
+//MARK: - Table delegate
+
 extension SearchViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 100
     }
 }
 
@@ -92,7 +127,7 @@ extension SearchViewControllerTable {
         searchTableView?.dataSource = self
         searchTableView?.delegate = self
         
-        searchTableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        searchTableView?.register(SearchHistoryTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         guard let searchTableView = searchTableView else { return }
         
@@ -120,5 +155,37 @@ extension SearchViewControllerNavigation {
         searchController?.searchBar.barStyle = .black
         searchController?.searchBar.delegate = self
         searchController?.searchBar.update()
+    }
+}
+
+typealias SearchViewControllerUtilities = SearchViewController
+extension SearchViewControllerUtilities {
+    
+    private func updateTable() {
+        dataSource = RealmController.shared.getImages()
+    }
+    
+    private func saveSearchResult(forPhrase searchPhrase: String, and collection: ImagesCollection) {
+        ApiController.shared.getImage(for: collection.jpeg.image.urlString, with: { response in
+            let fileName = UUID().uuidString
+            
+            FileManagerController.shared.save(data: response, for: fileName)
+            RealmController.shared.saveImage(with: searchPhrase, name: fileName)
+        })
+    }
+    
+    private func showErrorGettingPicturesAlert(for searchPhrase: String) {
+        let title = "Pictures were not found!"
+        let message = "No pictures were found with the request – \(searchPhrase)."
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "OK", style: .default, handler: { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.searchController?.isActive = false
+            }
+        })
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true)
     }
 }

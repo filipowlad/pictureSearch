@@ -40,7 +40,7 @@ class SearchResultTableViewCell: UITableViewCell {
     func setupImage(for imagesCollection: ImagesCollection) {
         let urlString = imagesCollection.jpeg.image.urlString
         
-        ApiController.shared.downloaded(from: urlString) { [weak self] data in
+        ApiController.shared.getImage(for: urlString) { [weak self] data in
             DispatchQueue.main.async {
                 self?.resultImageView?.image = UIImage(data: data)
             }

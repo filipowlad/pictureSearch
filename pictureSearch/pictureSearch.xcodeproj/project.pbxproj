@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A9ADFAE04AB25772EC24DF5 /* Pods_pictureSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B245F604C4891352BC4AA260 /* Pods_pictureSearch.framework */; };
 		37ABBB8622A6D5E7001F9C37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBB8522A6D5E7001F9C37 /* AppDelegate.swift */; };
 		37ABBB8B22A6D5E7001F9C37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37ABBB8922A6D5E7001F9C37 /* Main.storyboard */; };
 		37ABBB8D22A6D5E8001F9C37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37ABBB8C22A6D5E8001F9C37 /* Assets.xcassets */; };
@@ -17,6 +18,9 @@
 		37ABBBA522A71935001F9C37 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBA422A71935001F9C37 /* SearchResultsViewController.swift */; };
 		37ABBBAA22A71ED0001F9C37 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBA922A71ED0001F9C37 /* SearchResultTableViewCell.swift */; };
 		37ABBBAC22A72CF2001F9C37 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBAB22A72CF2001F9C37 /* Utilities.swift */; };
+		37ABBBAF22A83024001F9C37 /* RealmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBAE22A83024001F9C37 /* RealmController.swift */; };
+		37ABBBB122A8393C001F9C37 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBB022A8393C001F9C37 /* SearchHistoryTableViewCell.swift */; };
+		37ABBBB322A84608001F9C37 /* FileManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37ABBBB222A84608001F9C37 /* FileManagerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,12 @@
 		37ABBBA422A71935001F9C37 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		37ABBBA922A71ED0001F9C37 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		37ABBBAB22A72CF2001F9C37 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		37ABBBAE22A83024001F9C37 /* RealmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmController.swift; sourceTree = "<group>"; };
+		37ABBBB022A8393C001F9C37 /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		37ABBBB222A84608001F9C37 /* FileManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerController.swift; sourceTree = "<group>"; };
+		A33B2E034C4EDC292919C30E /* Pods-pictureSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pictureSearch.debug.xcconfig"; path = "Target Support Files/Pods-pictureSearch/Pods-pictureSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		B245F604C4891352BC4AA260 /* Pods_pictureSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pictureSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B63834BFAE8E779F39B525B9 /* Pods-pictureSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pictureSearch.release.xcconfig"; path = "Target Support Files/Pods-pictureSearch/Pods-pictureSearch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9ADFAE04AB25772EC24DF5 /* Pods_pictureSearch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +61,8 @@
 			children = (
 				37ABBB8422A6D5E7001F9C37 /* pictureSearch */,
 				37ABBB8322A6D5E7001F9C37 /* Products */,
+				3B2DF5776A80CE8DDC77FE88 /* Pods */,
+				394D57F510BF4120C27E4AF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				37ABBBA222A6EBD5001F9C37 /* ApiController.swift */,
+				37ABBBAE22A83024001F9C37 /* RealmController.swift */,
+				37ABBBB222A84608001F9C37 /* FileManagerController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -122,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				37ABBB9722A6DCB7001F9C37 /* SearchViewController.swift */,
+				37ABBBB022A8393C001F9C37 /* SearchHistoryTableViewCell.swift */,
 			);
 			path = SearchAndHistory;
 			sourceTree = "<group>";
@@ -143,6 +159,23 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		394D57F510BF4120C27E4AF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B245F604C4891352BC4AA260 /* Pods_pictureSearch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B2DF5776A80CE8DDC77FE88 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A33B2E034C4EDC292919C30E /* Pods-pictureSearch.debug.xcconfig */,
+				B63834BFAE8E779F39B525B9 /* Pods-pictureSearch.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +183,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37ABBB9422A6D5E8001F9C37 /* Build configuration list for PBXNativeTarget "pictureSearch" */;
 			buildPhases = (
+				EF5AD8BAC16873508DC6AE72 /* [CP] Check Pods Manifest.lock */,
 				37ABBB7E22A6D5E7001F9C37 /* Sources */,
 				37ABBB7F22A6D5E7001F9C37 /* Frameworks */,
 				37ABBB8022A6D5E7001F9C37 /* Resources */,
+				062242BE0905A519DCAD69BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,17 +244,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		062242BE0905A519DCAD69BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pictureSearch/Pods-pictureSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-pictureSearch/Pods-pictureSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-pictureSearch/Pods-pictureSearch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF5AD8BAC16873508DC6AE72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-pictureSearch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		37ABBB7E22A6D5E7001F9C37 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				37ABBB9822A6DCB7001F9C37 /* SearchViewController.swift in Sources */,
+				37ABBBB322A84608001F9C37 /* FileManagerController.swift in Sources */,
 				37ABBBA522A71935001F9C37 /* SearchResultsViewController.swift in Sources */,
 				37ABBBAC22A72CF2001F9C37 /* Utilities.swift in Sources */,
 				37ABBBAA22A71ED0001F9C37 /* SearchResultTableViewCell.swift in Sources */,
 				37ABBBA322A6EBD5001F9C37 /* ApiController.swift in Sources */,
+				37ABBBAF22A83024001F9C37 /* RealmController.swift in Sources */,
 				37ABBBA122A6E481001F9C37 /* ViewController.swift in Sources */,
+				37ABBBB122A8393C001F9C37 /* SearchHistoryTableViewCell.swift in Sources */,
 				37ABBB8622A6D5E7001F9C37 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +444,7 @@
 		};
 		37ABBB9522A6D5E8001F9C37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A33B2E034C4EDC292919C30E /* Pods-pictureSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -381,6 +462,7 @@
 		};
 		37ABBB9622A6D5E8001F9C37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B63834BFAE8E779F39B525B9 /* Pods-pictureSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

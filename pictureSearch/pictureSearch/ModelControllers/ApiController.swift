@@ -10,11 +10,13 @@ import Foundation
 
 class ApiController {
     
-    static let shared = ApiController()
-    
     private init() {}
     
+    static let shared = ApiController()
+    
     private var results = [String: Data]()
+    
+    //MARK: - Request data
     
     private let scheme = "https"
     private let host = "api.giphy.com"
@@ -24,7 +26,11 @@ class ApiController {
     
     private let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
     
-    func getImages(by searchPhrase: String, with completion: @escaping ([ImagesCollection])->()) {
+    //MARK: - Methods
+    
+    func getImages(by searchPhrase: String, with completion: @escaping ([ImagesCollection]?)->()) {
+        results = [:]
+        
         var components = URLComponents()
         
         components.scheme = scheme
@@ -44,22 +50,34 @@ class ApiController {
         let request = URLRequest(url: url)
         
         let task = session.dataTask(with: request, completionHandler: { (data, response, error) in
-            if let data = data,
-            let response = try? JSONDecoder().decode(ResponseData.self, from: data)  {
-                completion(response.data)
+            guard let data = data else {
+                completion(nil)
+                return
             }
+            
+            let response = try? JSONDecoder().decode(ResponseData.self, from: data)
+            completion(response?.data)
         })
         
         task.resume()
     }
     
-    func downloaded(from url: URL, completion: ((Data)->())?) {
+    func getImage(for link: String, with completion: ((Data)->())?) {
+        guard let data = results[link] else {
+            downloadPicture(from: link, with: completion)
+            return
+        }
+        
+        completion?(data)
+    }
+    
+    private func downloadPicture(from link: String, with completion: ((Data)->())?) {
+        guard let url = URL(string: link) else { return }
+        
         let session = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+            guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil
-                else { return }
+                let data = data, error == nil else { return }
             
             self?.results[url.absoluteString] = data
             
@@ -71,18 +89,9 @@ class ApiController {
         
         session.resume()
     }
-    
-    func downloaded(from link: String, completion: ((Data)->())?) {
-        
-        if let data = results[link] {
-            completion?(data)
-            return
-        }
-        
-        guard let url = URL(string: link) else { return }
-        downloaded(from: url, completion: completion)
-    }
 }
+
+//MARK: - Codable classes
 
 class ResponseData: NSObject, Decodable {
     
